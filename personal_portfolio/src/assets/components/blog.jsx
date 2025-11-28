@@ -1,48 +1,88 @@
-const Blog = () => {
+import { ArrowRight, Calendar, User } from "lucide-react";
+
+export default function Blog() {
   const posts = [
     {
-      title: "Building a Full Stack App with React & FastAPI",
-      date: "Nov 20, 2025",
-      desc: "Learn how to create a full-stack application with React frontend and FastAPI backend.",
+      id: 1,
+      title: "Building a Full-Stack App with React & FastAPI",
+      date: "January 2025",
+      author: "Sudhanshu Singh",
+      description:
+        "A step-by-step guide on connecting React with FastAPI using Axios, handling routes, and building clean UI components.",
+      image: "/blog1.jpg",
     },
     {
-      title: "AI for Plant Disease Detection",
-      date: "Oct 10, 2025",
-      desc: "Step-by-step tutorial to detect plant diseases using deep learning and computer vision.",
+      id: 2,
+      title: "How I Built My Portfolio with React + Tailwind",
+      date: "December 2024",
+      author: "Sudhanshu Singh",
+      description:
+        "A breakdown of how I created my portfolio website from scratch, including components, optimization, and responsive design.",
+      image: "/blog2.jpg",
     },
     {
-      title: "Portfolio Optimization Tips for Developers",
-      date: "Sep 5, 2025",
-      desc: "How to build a professional portfolio that highlights your skills and projects.",
+      id: 3,
+      title: "Understanding MySQL with FastAPI",
+      date: "November 2024",
+      author: "Sudhanshu Singh",
+      description:
+        "Learn how to set up SQLAlchemy, create models, APIs, and connect your backend with MySQL using simple steps.",
+      image: "/blog3.jpg",
     },
   ];
 
   return (
-    <section id="blog" className="py-20 bg-gray-100 text-gray-800">
-      <div className="max-w-6xl mx-auto text-center px-4">
-        <h2 className="text-4xl font-bold mb-12">Latest Blogs</h2>
+    <div
+      id="blog"
+      className="w-full bg-gray-50 dark:bg-gray-900 py-16 px-6 md:px-20 lg:px-32"
+    >
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-10">
+          Blog & Articles
+        </h2>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post, index) => (
+        {/* Blog Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post) => (
             <div
-              key={index}
-              className="p-6 bg-gray-50 shadow rounded-lg hover:shadow-xl transition"
+              key={post.id}
+              className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden transition transform hover:-translate-y-1"
             >
-              <h3 className="text-2xl font-semibold text-gray-800">{post.title}</h3>
-              <p className="text-gray-500 text-sm mt-1">{post.date}</p>
-              <p className="text-gray-700 mt-3">{post.desc}</p>
-              <a
-                href="#"
-                className="mt-4 inline-block text-blue-600 font-semibold hover:underline"
-              >
-                Read More →
-              </a>
+              <img
+                src={post.image}
+                alt={post.title}
+                className="w-full h-40 object-cover"
+              />
+
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  {post.title}
+                </h3>
+
+                <div className="flex items-center text-gray-500 dark:text-gray-400 text-sm mb-3 gap-4">
+                  <span className="flex items-center gap-1">
+                    <Calendar size={16} /> {post.date}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <User size={16} /> {post.author}
+                  </span>
+                </div>
+
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">
+                  {post.description}
+                </p>
+
+                <a
+                  href="#"
+                  className="flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline"
+                >
+                  Read More <ArrowRight size={18} className="ml-1" />
+                </a>
+              </div>
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
-};
-
-export default Blog;
+}
